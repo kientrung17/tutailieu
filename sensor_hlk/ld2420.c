@@ -20,8 +20,12 @@ uint8_t read_range(UART_HandleTypeDef *huart)
 	if(bien == 1)
 	{
 		HAL_UART_Receive(huart, data, 11,10);
+		if(data[10] == 0x0D) int range = data[9] - '0';
+		else 
+		{
 		int range = (data[9] - '0') * 10 + (data[10] - '0');
 		return range;
+		}
 	}
 	else return 1;
 }
