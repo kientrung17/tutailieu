@@ -2,21 +2,13 @@
 
 uint8_t read_sensor(UART_HandleTypeDef *huart)
 {
-	uint8_t data;
+	uint8_t data[2];
 	uint8_t bien;
-	while(1)
-	{
-	HAL_UART_Receive(huart, &data, 1,10);
-		if(data == 0x46)
-		{
-			bien =0;
-			break;
-		}
-		else if(data == 0x4E)
+	HAL_UART_Receive(huart, data, 2,10);
+		if(data == 0x4E)
 		{
 			bien =1;
-			break;
 		}
-	}
+	else bien = 0;
 	return bien;
 }
