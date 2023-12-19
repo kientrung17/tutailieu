@@ -5,5 +5,5 @@
 #include "stm32f1xx_hal.h"
 
 uint8_t read_sensor(UART_HandleTypeDef *huart);
-uint8_t read_range(UART_HandleTypeDef *huart)
+uint8_t read_range(UART_HandleTypeDef *huart);
 #endif
