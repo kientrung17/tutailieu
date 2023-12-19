@@ -12,3 +12,16 @@ uint8_t read_sensor(UART_HandleTypeDef *huart)
 	else bien = 0;
 	return bien;
 }
+uint8_t read_range(UART_HandleTypeDef *huart)
+{
+	uint8_t data[20];
+	uint8_t bien=read_sensor(huart);
+	uint8_t range;
+	if(bien == 1)
+	{
+		HAL_UART_Receive(huart, data, 11,10);
+		int range = (data[9] - '0') * 10 + (data[10] - '0');
+		return range;
+	}
+	else return 1;
+}
